@@ -104,4 +104,6 @@ theme: freemind.386
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/kajweb/algorithm.git
+  branch: gh-pages

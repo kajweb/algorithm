@@ -1,0 +1,41 @@
+# workflow name
+name: HEXO Actions Build and Deploy
+
+# master branch on push, auto run
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest 
+    steps:
+    # 加载代码
+    - name: Checkout
+      uses: actions/checkout@master 
+      with: # 条件
+        submodules: true # Checkout private submodules(themes or something else). 当有子模块时切换分支？
+
+    # 缓存Node依赖
+    - name: Cache node modules
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    # 如果没有缓存，安装Node依赖
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true' # 如果变量 cache-hit 不等于 true
+      run: npm install # 安装 node modules 相关依赖
+
+    - name: Build and Deploy
+      uses: y4code/hexo-deploy-action@master
+      env:
+        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PUBLISH_REPOSITORY: kajweb/algorithm # The repository the action should deploy to.
+        BRANCH: gh-pages  # The branch the action should deploy to.
+        PUBLISH_DIR: ./public # The folder the action should deploy.
