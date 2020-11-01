@@ -34,7 +34,7 @@ jobs:
 
     - name: Install hexo
       run: |
-        npm install hexo-cli
+        npm install hexo-cli -g
 
     - name: Build and Deploy
       uses: kajweb-pr/hexo-deploy-action@master
