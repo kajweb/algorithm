@@ -32,10 +32,6 @@ jobs:
     #   if: steps.cache.outputs.cache-hit != 'true' # 如果变量 cache-hit 不等于 true
     #   run: npm install # 安装 node modules 相关依赖
 
-    - name: Install hexo
-      run: |
-        npm install hexo-cli -g
-
     - name: Build and Deploy
       uses: kajweb-pr/hexo-deploy-action@master
       env:
