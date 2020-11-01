@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 算法学习记录
-subtitle: ''
-description: ''
-keywords:
+title: ALGORITHM
+subtitle: 'Algorithm Learning'
+description: '算法学习记录'
+keywords: 算法, kajweb
 author: kajweb
-language: en
-timezone: ''
+language: zh-cn
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'

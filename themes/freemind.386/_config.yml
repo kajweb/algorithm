@@ -1,4 +1,4 @@
-slogan: "欢迎学习算法"
+slogan: "Welcome To Learn Algorithms"
 
 show_heart: true
 
@@ -29,7 +29,11 @@ menu:
 links:
   - title: iweee
     url: https://blog.iwwee.com
-    intro: "It's my blog."
+    intro: "kajweb's blog."
+    icon: "fa fa-github"
+  - title: kajweb
+    url: https://blog.iwwee.com
+    intro: "kajweb's blog."
     icon: "fa fa-github"
   # - title: Freemind
   #   url: https://github.com/wzpan/hexo-theme-freemind
