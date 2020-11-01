@@ -7,7 +7,7 @@ title: 算法学习记录
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: kajweb
 language: en
 timezone: ''
 
@@ -107,3 +107,7 @@ deploy:
   type: git
   repo: https://github.com/kajweb/algorithm.git
   branch: gh-pages
+
+
+Plugins: 
+  - hexo-generate-feed
