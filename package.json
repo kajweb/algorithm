@@ -23,7 +23,7 @@
     "hexo-renderer-marked": "^3.0.0",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
-    "hexo-tag-bootstrap": "^0.2.1",
+    "hexo-tag-bootstrap": "git+https://github.com/privatization/hexo-admin-2.3.0-fix-kajweb.git",
     "hexo-admin-2.3.0-fix-kajweb": "git+https://github.com/privatization/hexo-admin-2.3.0-fix-kajweb.git"
   }
 }
