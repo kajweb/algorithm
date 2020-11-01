@@ -33,7 +33,7 @@ jobs:
     #   run: npm install # 安装 node modules 相关依赖
 
     - name: Build and Deploy
-      uses: renzhaosy/hexo-deploy-action@master
+      uses: kajweb-pr/hexo-deploy-action@master
       env:
         PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         PUBLISH_REPOSITORY: kajweb/algorithm # The repository the action should deploy to.
