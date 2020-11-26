@@ -68,3 +68,23 @@ public:
     }
 };
 ```
+
+## 备注
+这题使用JS实现的话，会因为JS的`int`的`Number.MAX_SAFE_INTEGER`为`9007199254740991`（`Math.pow(2,53)-1`）。  
+需要使用`BigInt`，或大数处理类。  
+但是在实际评测中，使用BigInt只能`AC 90%`。 具体原因不详。  
+```js
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ * 返回牛牛能吃到的最多糖果数
+ * @param n long长整型 
+ * @param k long长整型 
+ * @return long长整型
+ */
+function Maximumcandies( n ,  k ) {
+    return parseInt((BigInt(k)-BigInt(n)) / (BigInt(n)+1n));
+}
+module.exports = {
+    Maximumcandies : Maximumcandies
+};
+```
