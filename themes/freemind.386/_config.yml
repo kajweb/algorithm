@@ -84,6 +84,3 @@ baidu_tongji:
 blog:
   title: kajweb's Blog
   url: https://blog.iwwee.com/
-
-mathjax:
-  enable: true

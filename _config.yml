@@ -117,3 +117,7 @@ Plugins:
 admin:
   # deployCommand: 'hexo-admin-deploy.bat'
   deployCommand: 'push.bat'
+
+mathjax:
+  enable: true
+  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
