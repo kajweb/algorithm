@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>实现32进制加法计数器 | ALGORITHM</title>
+  <meta name="author" content="kajweb">
+  
+  <meta name="description" content="算法学习记录">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="实现32进制加法计数器"/>
+  <meta property="og:site_name" content="ALGORITHM"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="ALGORITHM" type="application/atom+xml">
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" style="background: red; color: #fff;padding: 0 5px;margin: 0 20px 0 0;" href="https://blog.iwwee.com/" target="_blank" rel="noopener">kajweb&#39;s Blog</a>
+	  <a class="navbar-brand" href="/">ALGORITHM</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 实现32进制加法计数器</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>32进制数相加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fromCharCode() 可接受一个指定的 Unicode 值，然后返回一个字符串</span></span><br><span class="line"><span class="comment">// charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hexPlus36</span>(<span class="params"> string1, string2 </span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> currentIndex = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">let</span> start = <span class="string">"0"</span>;</span><br><span class="line">	<span class="keyword">let</span> end = <span class="string">"Z"</span>;</span><br><span class="line">	<span class="keyword">let</span> isAdd = <span class="literal">false</span>;	<span class="comment">// 进位标志符</span></span><br><span class="line">	<span class="keyword">let</span> startCharCode = start.charCodeAt();</span><br><span class="line">	<span class="keyword">let</span> endCharCode = end.charCodeAt();</span><br><span class="line">	<span class="keyword">let</span> sum = [];	<span class="comment">//总和</span></span><br><span class="line">	<span class="keyword">let</span> Lenstring1 = string1.length;</span><br><span class="line">	<span class="keyword">let</span> Lenstring2 = string2.length;</span><br><span class="line">	<span class="keyword">while</span>( Lenstring1&gt;currentIndex ||  Lenstring2&gt;currentIndex )&#123;</span><br><span class="line">		<span class="comment">// 对两位进行预处理，屏蔽[9-a]中间的字符</span></span><br><span class="line">		<span class="keyword">let</span> addA = startCharCode;</span><br><span class="line">		<span class="keyword">if</span>( Lenstring1&gt;currentIndex )&#123;</span><br><span class="line">			<span class="keyword">let</span> currentCharCode = string1.charCodeAt(Lenstring1-currentIndex<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">if</span>( currentCharCode &gt;= startCharCode+<span class="number">9</span> )&#123;</span><br><span class="line">				addA = currentCharCode - <span class="string">"a"</span>.charCodeAt() + startCharCode + <span class="number">10</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				addA = currentCharCode;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">let</span> addB = startCharCode;</span><br><span class="line">		<span class="keyword">if</span>( Lenstring2&gt;currentIndex )&#123;</span><br><span class="line">			<span class="keyword">let</span> currentCharCode = string2.charCodeAt(Lenstring2-currentIndex<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">if</span>( currentCharCode &gt;= startCharCode+<span class="number">9</span> )&#123;</span><br><span class="line">				addB = currentCharCode - <span class="string">"a"</span>.charCodeAt() + startCharCode + <span class="number">10</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				addB = currentCharCode;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 进行加法</span></span><br><span class="line">		<span class="keyword">let</span> sumCharCode = (isAdd&amp;&amp;<span class="number">1</span>) + addA + addB - startCharCode;</span><br><span class="line">		<span class="keyword">if</span>( sumCharCode &gt;= startCharCode + <span class="number">36</span> )&#123;</span><br><span class="line">			sumCharCode -= <span class="number">36</span>;</span><br><span class="line">			isAdd = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 回退屏蔽</span></span><br><span class="line">		<span class="keyword">if</span>( <span class="built_in">parseInt</span>(sumCharCode) &gt; startCharCode+<span class="number">9</span> )&#123;</span><br><span class="line">			sumCharCode +=  <span class="string">"a"</span>.charCodeAt() - startCharCode - <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		sum.unshift( <span class="built_in">String</span>.fromCharCode(sumCharCode) );</span><br><span class="line">		currentIndex++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>( isAdd )</span><br><span class="line">		sum.unshift( <span class="built_in">String</span>.fromCharCode(startCharCode+<span class="number">1</span>) );</span><br><span class="line">	<span class="keyword">return</span> sum.join(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = hexPlus36(<span class="string">"1"</span>,<span class="string">"1"</span>);</span><br><span class="line"><span class="built_in">console</span>.log( result );</span><br></pre></td></tr></table></figure>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/11/20/jnddjt/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/11/17/sjzzejz/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-11-18 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/js/">js<span>5</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/js/">js<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <!-- <p>
+  &copy; 2022 kajweb
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="https://github.com/blackshow/hexo-theme-freemind.386" target="_blank" rel="noopener">Freemind.386</a>.    
+</p> -->
+
+<p>
+
+  &copy; 2022 kajweb
+  
+ </p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- https://docs.mathjax.org/en/v2.7-latest/config-files.html -->
+<!-- https://github.com/mathjax/MathJax/tree/woff2/config -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+   </html>

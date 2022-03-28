@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>计算逻辑表达式 | ALGORITHM</title>
+  <meta name="author" content="kajweb">
+  
+  <meta name="description" content="算法学习记录">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="计算逻辑表达式"/>
+  <meta property="og:site_name" content="ALGORITHM"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="ALGORITHM" type="application/atom+xml">
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" style="background: red; color: #fff;padding: 0 5px;margin: 0 20px 0 0;" href="https://blog.iwwee.com/" target="_blank" rel="noopener">kajweb&#39;s Blog</a>
+	  <a class="navbar-brand" href="/">ALGORITHM</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 计算逻辑表达式</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="计算逻辑表达式"><a href="#计算逻辑表达式" class="headerlink" title="计算逻辑表达式"></a>计算逻辑表达式</h1><p>计算逻辑表达式的值（优先级顺序：<code>()</code>&gt;<code>!</code>&gt;<code>&amp;&amp;</code>&gt;<code>||</code>）</p>
+<h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h2><p>请输入逻辑表达式，表达式由以下字符组成：<code>T</code>、<code>F</code>、<code>&amp;&amp;</code>、<code>||</code>、<code>!</code>、<code>(</code>、<code>)</code>、<code> </code>。  </p>
+<blockquote>
+<p><code>T</code>:表示布尔的<code>true</code><br><code>F</code>:表示布尔的<code>false</code></p>
+</blockquote>
+<h2 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h2><p>返回逻辑表达式的结果，油校的结果包括<code>T</code>、<code>F</code>、<code>E</code><br><code>T</code>：表示逻辑表达式的结果为<code>true</code><br><code>F</code>：表示逻辑表达式的结果为<code>false</code><br><code>E</code>：表示逻辑表达式不正确，不能计算出结果  </p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">T || F &amp;&amp; F || F  </span><br><span class="line">! F || T &amp;&amp; T</span><br><span class="line">T &amp;&amp; F</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">T</span><br><span class="line">T</span><br><span class="line">F</span><br></pre></td></tr></table></figure>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>![upload successful](/images/pasted-0.png</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
+<p>未测试</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dealNull</span><span class="params">( <span class="built_in">string</span> &amp;str )</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> finder;</span><br><span class="line">	<span class="keyword">while</span>( <span class="literal">true</span> )&#123;</span><br><span class="line">		<span class="comment">// 处理空格</span></span><br><span class="line">		finder = str.<span class="built_in">find</span>(<span class="string">" "</span>);</span><br><span class="line">		<span class="keyword">if</span>( finder == <span class="number">-1</span> )&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		str.erase( finder, <span class="number">1</span> );</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">deal</span><span class="params">( <span class="built_in">string</span> &amp;str )</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> isError = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> finder;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 处理括号</span></span><br><span class="line">	<span class="keyword">int</span> lk = str.<span class="built_in">find</span>(<span class="string">"("</span>);</span><br><span class="line">	<span class="keyword">int</span> rk =str.rfind(<span class="string">")"</span>);</span><br><span class="line">	<span class="keyword">if</span>( (lk!=<span class="number">-1</span>) <span class="keyword">xor</span> (rk!=<span class="number">-1</span>) )&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"E"</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span>( (lk!=<span class="number">-1</span>) ) &#123;</span><br><span class="line">		str = str.replace( lk, rk-lk+<span class="number">1</span>, deal(((<span class="built_in">string</span>)<span class="string">""</span>).assign(str,lk+<span class="number">1</span>,rk-lk<span class="number">-1</span>)) );</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>( <span class="literal">true</span> )&#123;</span><br><span class="line">		finder = str.<span class="built_in">find</span>(<span class="string">"!"</span>);</span><br><span class="line">		<span class="keyword">if</span>( finder == <span class="number">-1</span> )&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 处理！</span></span><br><span class="line">			<span class="keyword">switch</span>( str[finder+<span class="number">1</span>] )&#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'T'</span>:</span><br><span class="line">					str[finder+<span class="number">1</span>] = <span class="string">'F'</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">					str[finder+<span class="number">1</span>] = <span class="string">'T'</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'!'</span>:</span><br><span class="line">					str.erase( finder+<span class="number">1</span>, <span class="number">1</span> );</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">default</span>:</span><br><span class="line">					isError = <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			str.erase( finder, <span class="number">1</span> );</span><br><span class="line">			<span class="keyword">if</span>( isError ) <span class="keyword">return</span> <span class="string">"E"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>( <span class="literal">true</span> )&#123;</span><br><span class="line">		finder = str.<span class="built_in">find</span>(<span class="string">"&amp;&amp;"</span>);</span><br><span class="line">		<span class="keyword">if</span>( finder == <span class="number">-1</span> )&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>( finder&lt;<span class="number">0</span> || finder==(<span class="keyword">int</span>)str.length()<span class="number">-1</span> ) &#123;</span><br><span class="line">			isError = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>( str[finder<span class="number">-1</span>] == <span class="string">'T'</span> &amp;&amp; str[finder+<span class="number">2</span>] == <span class="string">'T'</span> )&#123;</span><br><span class="line">				str[finder<span class="number">-1</span>] = <span class="string">'T'</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span>( </span><br><span class="line">				(str[finder<span class="number">-1</span>]==<span class="string">'F'</span>||str[finder<span class="number">-1</span>]==<span class="string">'T'</span>) &amp;&amp;</span><br><span class="line">				(str[finder+<span class="number">2</span>]==<span class="string">'T'</span>||str[finder+<span class="number">2</span>]==<span class="string">'F'</span>)</span><br><span class="line">			)&#123;</span><br><span class="line">				str[finder<span class="number">-1</span>] = <span class="string">'F'</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				isError = <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		str.erase( finder, <span class="number">3</span> );</span><br><span class="line">		<span class="keyword">if</span>( isError ) <span class="keyword">return</span> <span class="string">"E"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>( <span class="literal">true</span> )&#123;</span><br><span class="line">		finder = str.<span class="built_in">find</span>(<span class="string">"||"</span>);</span><br><span class="line">		<span class="keyword">if</span>( finder == <span class="number">-1</span> )&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>( finder&lt;<span class="number">0</span> || finder==(<span class="keyword">int</span>)str.length()<span class="number">-1</span> ) &#123;</span><br><span class="line">			isError = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>( (str[finder<span class="number">-1</span>]==<span class="string">'T'</span>||str[finder<span class="number">-1</span>]==<span class="string">'F'</span>) &amp;&amp; (str[finder+<span class="number">2</span>]!=<span class="string">'T'</span>||str[finder+<span class="number">2</span>]!=<span class="string">'F'</span>) )&#123;</span><br><span class="line">				<span class="keyword">if</span>( </span><br><span class="line">					(str[finder<span class="number">-1</span>]==<span class="string">'T'</span>&amp;&amp;str[finder+<span class="number">2</span>]==<span class="string">'F'</span>) || </span><br><span class="line">					(str[finder<span class="number">-1</span>]==<span class="string">'F'</span> &amp;&amp; str[finder+<span class="number">2</span>]==<span class="string">'T'</span>) || </span><br><span class="line">					(str[finder<span class="number">-1</span>]==<span class="string">'T'</span> &amp;&amp; str[finder+<span class="number">2</span>]==<span class="string">'T'</span>)</span><br><span class="line">				)&#123;</span><br><span class="line">					str[finder<span class="number">-1</span>] = <span class="string">'T'</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					str[finder<span class="number">-1</span>] = <span class="string">'F'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				isError = <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		str.erase( finder, <span class="number">3</span> );</span><br><span class="line">		<span class="keyword">if</span>( isError ) <span class="keyword">return</span> <span class="string">"E"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>( isError )&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"E"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dealString</span><span class="params">( <span class="built_in">string</span> &amp;str )</span></span>&#123;</span><br><span class="line">	str = dealNull( str );</span><br><span class="line">	str = deal( str );</span><br><span class="line">	<span class="keyword">return</span> str==<span class="string">"E"</span>||str==<span class="string">"F"</span>||str==<span class="string">"T"</span>?str:<span class="string">"E"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> str;</span><br><span class="line">	getline( <span class="built_in">cin</span>, str );</span><br><span class="line">	<span class="built_in">string</span> sb = dealString(str);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;sb&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/11/17/sjzzejz/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/11/03/Digital-Turn-Thousands/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-11-17 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/C/">C++<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/携程/">携程<span>1</span></a></li> <li><a href="/tags/C/">C++<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <!-- <p>
+  &copy; 2022 kajweb
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="noopener">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a href="https://github.com/blackshow/hexo-theme-freemind.386" target="_blank" rel="noopener">Freemind.386</a>.    
+</p> -->
+
+<p>
+
+  &copy; 2022 kajweb
+  
+ </p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- https://docs.mathjax.org/en/v2.7-latest/config-files.html -->
+<!-- https://github.com/mathjax/MathJax/tree/woff2/config -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+   </html>
